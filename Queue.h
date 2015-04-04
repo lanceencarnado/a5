@@ -55,34 +55,128 @@ Queue<T>::~Queue(){ }
 
 //to do
 template <class T>
-void Queue<T>::pop(){ }
+void Queue<T>::pop(){
+    if (head != 0)
+        *(this) -= head->data;
+}
 
 //to do
 template <class T>
-T* Queue<T>::front(){ }
+T* Queue<T>::front(){
+    return head->data;
+}
 
 //to do
 template <class T>
-int Queue<T>::getPirateSpace(int pID){ }
+void Queue<T>::deleteData(){
+    Node *currNode, *nextNode;
+    
+    currNode = head;
+    
+    while (currNode != 0) {
+        nextNode = currNode->next;
+        delete currNode->data;
+        currNode = nextNode;
+    }
+}
 
 //to do
 template <class T>
-T* Queue<T>::find(int){ }
+Queue<T>& Queue<T>::operator+=(T*){
+    Node *newNode;
+    Node *currNode, *prevNode;
+    
+    newNode = new Node;
+    newNode->data = newPirate;
+    newNode->prev = 0;
+    newNode->next = 0;
+    
+    prevNode = 0;
+    currNode = head;
+    
+    while (currNode != 0) {
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+    
+    if (prevNode == 0) {
+        head = newNode;
+    }
+    else {
+        prevNode->next = newNode;
+        newNode->prev  = prevNode;
+    }
+    
+    newNode->next = currNode;
+    
+    if (currNode != 0) {
+        currNode->prev = newNode;
+    }
+    
+    return *this;
+}
 
 //to do
 template <class T>
-void Queue<T>::deleteData(){ }
+Queue<T>& Queue<T>::operator-=(T*){
+    Node *currNode, *prevNode;
+    
+    prevNode = 0;
+    currNode = head;
+    
+    while (currNode != 0) {
+        if (currNode->data->getId() == piratePtr->getId())
+            break;
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+    
+    if (currNode == 0)
+        return *this;
+    
+    if (prevNode == 0) {
+        head = currNode->next;
+        if (head != 0)
+            head->prev = 0;
+    }
+    else {
+        prevNode->next = currNode->next;
+        if (currNode->next != 0)
+            currNode->next->prev = prevNode;
+    }
+    
+    delete currNode;
+    
+    return *this;
+
+}
 
 //to do
 template <class T>
-Queue<T>& Queue<T>::operator+=(T*){ }
+T* Queue<T>::operator[](int index){
+    Node *currNode;
+    int currIndex = 0;
+    
+    currNode = head;
+    
+    while (currNode != 0) {
+        if (currIndex == index) {
+            return currNode->data;
+        }
+        currNode = currNode->next;
+        currIndex += 1;
+    }
+    
+    return 0;
+}
 
 //to do
 template <class T>
-Queue<T>& Queue<T>::operator-=(T*){ }
-
-//to do
-template <class T>
-bool Queue<T>::operator!(){ }
+bool Queue<T>::operator!(){
+    if (head == 0)
+        return false;
+    else
+        return true;
+}
 
 #endif
