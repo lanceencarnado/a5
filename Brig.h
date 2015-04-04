@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ using namespace std;
 #include "Borc.h"
 #include "Dorc.h"
 #include "Porc.h"
-#include "CArray.h"
+#include "Cell.h"
 
 class Brig 
 {
@@ -18,11 +19,11 @@ class Brig
         Brig();
         ~Brig();
         int removePirate(int);
-        CArray& getCells();
+        list<Cell*>& getCells();
         Brig& operator+=(Pirate*);
     
     private:
-        CArray cells;
+        list<Cell*> cells;
 };
 
 #endif

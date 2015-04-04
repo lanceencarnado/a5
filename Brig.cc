@@ -4,9 +4,10 @@ Brig::Brig() { }
 
 Brig::~Brig() {
     // Deletes the data contained in each queue in each cell
-	for (int i=0; i<cells.getSize(); ++i) {
-		cells[i]->getPirates().deleteData();
-	}
+    list<Cell*>::iterator itr;
+    for (itr = cells.begin(); itr != cells.end(); ++itr) {
+        (*itr)->getPirates().deleteData();
+    }
 }
 
 /*   Function:  overloaded addition assignment operator         */
@@ -17,23 +18,25 @@ Brig::~Brig() {
 Brig& Brig::operator+=(Pirate* pirate)
 {
     Cell* newCell;
-    int index = -1;
-
-    for (int i=0; i<cells.getSize(); ++i) {
-        if (cells[i]->fits(pirate)) 
-            index = i;
+    bool added = false;
+    
+    list<Cell*>::iterator itr;
+    for (itr = cells.begin(); itr != cells.end(); ++itr) {
+        if ((*itr)->fits(pirate)) {
+            (*itr)->getPirates() += pirate;
+            *(*itr) -= pirate->getSpace();
+            added = true;
+            break;
+        }
     }
-
-    if (index >= 0) {
-        cells[index]->getPirates() += pirate;
-        *(cells[index]) -= pirate->getSpace();
-    }
-    else {
+    
+    if (!added) {
         newCell = new Cell;
-        cells += newCell;
+        cells.push_back(newCell);
         newCell->getPirates() += pirate;
-        *newCell -= pirate->getSpace();
+        *newCell -= pirate->getSpace();        
     }
+    
     return *this;
 }
 
@@ -45,9 +48,10 @@ Brig& Brig::operator+=(Pirate* pirate)
 int Brig::removePirate(int pirateId) {
     Cell* currCell;
     Pirate* foundPirate;
-    for (int i=0; i<cells.getSize(); ++i) {
-        currCell = cells[i];
-        // goes through each Queue and asks if it contains the Pirate to be removed
+
+    list<Cell*>::iterator itr;
+    for (itr = cells.begin(); itr != cells.end(); ++itr) {
+        currCell = *itr;
         foundPirate = currCell->getPirates().find(pirateId);
         if (foundPirate != 0) {
             *currCell += (currCell->getPirates().getPirateSpace(pirateId));
@@ -56,8 +60,9 @@ int Brig::removePirate(int pirateId) {
             return C_OK;
         } 
     }
+    
     return C_NOK;   // if we've reached this then the Pirate wasn't found
 }
 
-CArray& Brig::getCells() { return cells; }
+list<Cell*>& Brig::getCells() { return cells; }
 
