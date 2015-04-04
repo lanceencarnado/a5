@@ -53,20 +53,17 @@ Queue<T>::Queue(Queue<T>){
 template <class T>
 Queue<T>::~Queue(){ }
 
-//to do
 template <class T>
 void Queue<T>::pop(){
     if (head != 0)
         *(this) -= head->data;
 }
 
-//to do
 template <class T>
 T* Queue<T>::front(){
     return head->data;
 }
 
-//to do
 template <class T>
 void Queue<T>::deleteData(){
     Node *currNode, *nextNode;
@@ -80,7 +77,6 @@ void Queue<T>::deleteData(){
     }
 }
 
-//to do
 template <class T>
 Queue<T>& Queue<T>::operator+=(T*){
     Node *newNode;
@@ -116,7 +112,6 @@ Queue<T>& Queue<T>::operator+=(T*){
     return *this;
 }
 
-//to do
 template <class T>
 Queue<T>& Queue<T>::operator-=(T*){
     Node *currNode, *prevNode;
@@ -151,7 +146,6 @@ Queue<T>& Queue<T>::operator-=(T*){
 
 }
 
-//to do
 template <class T>
 T* Queue<T>::operator[](int index){
     Node *currNode;
@@ -170,7 +164,6 @@ T* Queue<T>::operator[](int index){
     return 0;
 }
 
-//to do
 template <class T>
 bool Queue<T>::operator!(){
     if (head == 0)
