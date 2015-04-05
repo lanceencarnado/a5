@@ -118,7 +118,7 @@ void UImanager::getIdToRemove(int* pId){
 void UImanager::printBrig(Brig* brig)
 {
     list<Cell*>& cells = brig->getCells();
-    Queue<Pirate>* tempQueue;
+    Queue<Pirate*>* tempQueue;
     int index = 0;
 
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
@@ -127,7 +127,7 @@ void UImanager::printBrig(Brig* brig)
     list<Cell*>::iterator itr;
     for (itr = cells.begin(); itr != cells.end(); ++itr) {
         cout << "--Cell "<<index<<": space remaining="<<(*itr)->getSpace()<<endl;
-        tempQueue = new Queue((*itr)->getPirates());
+        tempQueue = new Queue<Pirate*>((*itr)->getPirates());
         while (!(*tempQueue)) {
             cout <<"----Pirate id: "<< (*tempQueue)[0]->getId() 
                 << "  space: " << (*tempQueue)[0]->getSpace() << endl;

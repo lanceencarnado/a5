@@ -171,9 +171,4 @@ bool Queue<T>::operator!(){
         return true;
 }
 
-template <class T>
-Node* Queue<T>::getHead(){
-    return head;
-}
-
 #endif

@@ -8,8 +8,8 @@ Cell::Cell(int size)
     cellNumber = nextId++;
 }
 
-Queue&  Cell::getPirates()   { return pirates; }
-int     Cell::getSpace()   { return spaceRemaining; }
+Queue<Pirate*>&     Cell::getPirates()   { return pirates; }
+int                 Cell::getSpace()   { return spaceRemaining; }
 
 
 /*   Function:  fits()                                          */
@@ -61,19 +61,24 @@ Cell& Cell::operator+=(Pirate* newPirate){
 /*    Purpose:  Returns the space of a pirate (this is used     */
 /*              when removing a pirate, in order to increase    */
 /*              the space that is left in a cell after a pirate */
-/*              is removed from it                              */
+/*              is removed from it)                             */
+/*              (a temporary queue is made in order to find     */
+/*              the Pirate)                                     */
 
 int Cell::getPirateSpace(int pirateId) {
-    Node *currNode;
+    Queue<Pirate*>* tempQueue = new Queue<Pirate*>(pirates);
+    int foundSpace;
     
-    currNode = pirates.getHead();
-    
-    while (currNode != 0) {
-        if (currNode->data->getId() == pirateId)
-            return currNode->data->getSpace();
-        currNode = currNode->next;
+    while (!(*tempQueue)) {
+        if ((*tempQueue)[0]->getId() == pirateId) {
+            foundSpace = (*tempQueue)[0]->getSpace();
+            delete tempQueue;
+            return foundSpace;
+        }
+        tempQueue->pop();
     }
     
+    delete tempQueue;
     return 0;
 }
 
@@ -84,17 +89,22 @@ int Cell::getPirateSpace(int pirateId) {
 /*              searched for                                    */
 /*              (for deallocation purposes in the               */
 /*              removePirate() function in the Brig)            */
+/*              (a temporary queue is made in order to find     */
+/*              the Pirate)                                     */
 
 Pirate* Cell::find(int pirateId) {
-    Node *currNode;
+    Queue<Pirate*>* tempQueue = new Queue<Pirate*>(pirates);
+    Pirate* foundPirate;
     
-    currNode = pirates.getHead();
-    
-    while (currNode != 0) {
-        if (currNode->data->getId() == pirateId)
-            return currNode->data;
-        currNode = currNode->next;
+    while (!(*tempQueue)) {
+        if ((*tempQueue)[0]->getId() == pirateId) {
+            foundPirate = (*tempQueue)[0];
+            delete tempQueue;
+            return foundPirate;
+        }
+        tempQueue->pop();
     }
     
+    delete tempQueue;
     return 0;
 }

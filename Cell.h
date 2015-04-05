@@ -13,21 +13,20 @@ class Cell
 {
   public:
     Cell(int=MAX_CELL_SPACE);
-    bool    fits(Pirate*);
-    Queue&  getPirates();
-    int     getSpace();
-    Cell&   operator+=(int);
-    Cell&   operator-=(int);
-    Cell&   operator+=(Pirate*);
-    int     getPirateSpace(int);
-    Pirate* find(int);
+    bool            fits(Pirate*);
+    Queue<Pirate*>& getPirates();
+    int             getSpace();
+    Cell&           operator+=(int);
+    Cell&           operator-=(int);
+    Cell&           operator+=(Pirate*);
+    int             getPirateSpace(int);
+    Pirate*         find(int);
     
   private:
-    static int  nextId;
-    int         cellNumber;
-    int         spaceRemaining;
-    Queue<Pirate*>       pirates;
+    static int      nextId;
+    int             cellNumber;
+    int             spaceRemaining;
+    Queue<Pirate*>  pirates;
 };
 
 #endif
-

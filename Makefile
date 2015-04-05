@@ -1,4 +1,4 @@
-OBJ = main.o BrigManager.o Brig.o Cell.o Pirate.o UImanager.o random.o Queue.o Borc.o Dorc.o Porc.o
+OBJ = main.o BrigManager.o Brig.o Cell.o Pirate.o UImanager.o random.o Borc.o Dorc.o Porc.o
 
 a5:	$(OBJ)
 	g++ -o a5 $(OBJ)
@@ -21,7 +21,7 @@ BrigManager.o:	BrigManager.cc BrigManager.h
 UImanager.o:	UImanager.cc UImanager.h 
 	g++ -c UImanager.cc
 
-Cell.o:	Cell.cc Cell.h defs.h
+Cell.o:	Cell.cc Cell.h Queue.h defs.h
 	g++ -c Cell.cc
 
 Brig.o:	Brig.cc Brig.h defs.h
@@ -30,8 +30,6 @@ Brig.o:	Brig.cc Brig.h defs.h
 Pirate.o:	Pirate.cc Pirate.h
 	g++ -c Pirate.cc
 
-Queue.o:	Queue.cc Queue.h
-	g++ -c Queue.cc
 
 random.o:	random.cc
 	g++ -c random.cc
