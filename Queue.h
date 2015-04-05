@@ -9,9 +9,9 @@ class Queue
 {
     class Node 
     {
-        friend class Queue;
+        friend class Queue<V>;
         private:
-            Pirate* data;
+            V* data;
             Node*   next;
             Node*   prev;
     };
@@ -22,12 +22,10 @@ class Queue
         ~Queue();
         void pop();
         T* front();
-        int getPirateSpace(int pID);
-        T* find(int);
         void deleteData();
         Queue<T>& operator+=(T*);
         Queue<T>& operator-=(T*);
-        T* operator[](int index);
+        T* operator[](int);
         bool operator!();
     
     private:
@@ -38,7 +36,7 @@ template <class T>
 Queue<T>::Queue() : head (0){ }
 
 template <class T>
-Queue<T>::Queue(Queue<T>){
+Queue<T>::Queue(Queue<T> &origQueue){
     head = 0;
     Node *origCurrNode;
     
@@ -78,12 +76,12 @@ void Queue<T>::deleteData(){
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator+=(T*){
+Queue<T>& Queue<T>::operator+=(T* newT){
     Node *newNode;
     Node *currNode, *prevNode;
     
     newNode = new Node;
-    newNode->data = newPirate;
+    newNode->data = newT;
     newNode->prev = 0;
     newNode->next = 0;
     
@@ -113,14 +111,14 @@ Queue<T>& Queue<T>::operator+=(T*){
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator-=(T*){
+Queue<T>& Queue<T>::operator-=(T* tPtr){
     Node *currNode, *prevNode;
     
     prevNode = 0;
     currNode = head;
     
     while (currNode != 0) {
-        if (currNode->data->getId() == piratePtr->getId())
+        if (currNode->data == tPtr)
             break;
         prevNode = currNode;
         currNode = currNode->next;
