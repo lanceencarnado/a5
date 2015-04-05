@@ -118,7 +118,7 @@ void UImanager::getIdToRemove(int* pId){
 void UImanager::printBrig(Brig* brig)
 {
     list<Cell*>& cells = brig->getCells();
-    Queue* tempQueue;
+    Queue<Pirate*> tempQueue;
     int index = 0;
 
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
