@@ -52,9 +52,9 @@ int Brig::removePirate(int pirateId) {
     list<Cell*>::iterator itr;
     for (itr = cells.begin(); itr != cells.end(); ++itr) {
         currCell = *itr;
-        foundPirate = currCell->getPirates().find(pirateId);
+        foundPirate = currCell->find(pirateId);
         if (foundPirate != 0) {
-            *currCell += (currCell->getPirates().getPirateSpace(pirateId));
+            *currCell += (currCell->getPirateSpace(pirateId));
             currCell->getPirates() -= foundPirate;  // remove it from the Queue
             delete foundPirate;                       // deallocate the data
             return C_OK;
