@@ -49,7 +49,17 @@ Queue<T>::Queue(Queue<T> &origQueue){
 }
 
 template <class T>
-Queue<T>::~Queue(){ }
+Queue<T>::~Queue(){
+    Node *currNode, *nextNode;
+    
+    currNode = head;
+    
+    while (currNode != 0) {
+        nextNode = currNode->next;
+        delete currNode;
+        currNode = nextNode;
+    }
+}
 
 template <class T>
 void Queue<T>::pop(){
