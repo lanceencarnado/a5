@@ -9,9 +9,9 @@ class Queue
 {
     class Node 
     {
-        friend class Queue<V>;
+        friend class Queue<T>;
         private:
-            V* data;
+            T* data;
             Node*   next;
             Node*   prev;
     };
