@@ -23,8 +23,8 @@ class Queue
         void pop();
         T* front();
         void deleteData();
-        Queue<T>& operator+=(T*);
-        Queue<T>& operator-=(T*);
+        Queue<T>& operator+=(T);
+        Queue<T>& operator-=(T);
         T* operator[](int);
         bool operator!();
         Node* getHead();
@@ -77,7 +77,7 @@ void Queue<T>::deleteData(){
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator+=(T* newT){
+Queue<T>& Queue<T>::operator+=(T newT){
     Node *newNode;
     Node *currNode, *prevNode;
     
@@ -112,7 +112,7 @@ Queue<T>& Queue<T>::operator+=(T* newT){
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator-=(T* tPtr){
+Queue<T>& Queue<T>::operator-=(T tPtr){
     Node *currNode, *prevNode;
     
     prevNode = 0;

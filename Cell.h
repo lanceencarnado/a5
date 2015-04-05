@@ -26,7 +26,7 @@ class Cell
     static int  nextId;
     int         cellNumber;
     int         spaceRemaining;
-    Queue<Pirate>       pirates;
+    Queue<Pirate*>       pirates;
 };
 
 #endif
