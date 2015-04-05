@@ -19,6 +19,8 @@ class Cell
     Cell&   operator+=(int);
     Cell&   operator-=(int);
     Cell&   operator+=(Pirate*);
+    int     getPirateSpace(int);
+    Pirate* find(int);
     
   private:
     static int  nextId;
