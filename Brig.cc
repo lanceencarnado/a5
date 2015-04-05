@@ -7,6 +7,7 @@ Brig::~Brig() {
     list<Cell*>::iterator itr;
     for (itr = cells.begin(); itr != cells.end(); ++itr) {
         (*itr)->getPirates().deleteData();
+        delete (*itr);
     }
 }
 
