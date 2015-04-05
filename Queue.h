@@ -27,7 +27,6 @@ class Queue
         Queue<T>& operator-=(T);
         T operator[](int);
         bool operator!();
-        Node* getHead();
     
     private:
         Node* head;
