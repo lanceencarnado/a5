@@ -11,7 +11,7 @@ class Queue
     {
         friend class Queue<T>;
         private:
-            T* data;
+            T data;
             Node*   next;
             Node*   prev;
     };
@@ -21,11 +21,11 @@ class Queue
         Queue(Queue<T>&);
         ~Queue();
         void pop();
-        T* front();
+        T front();
         void deleteData();
         Queue<T>& operator+=(T);
         Queue<T>& operator-=(T);
-        T* operator[](int);
+        T operator[](int);
         bool operator!();
         Node* getHead();
     
@@ -59,7 +59,7 @@ void Queue<T>::pop(){
 }
 
 template <class T>
-T* Queue<T>::front(){
+T Queue<T>::front(){
     return head->data;
 }
 
@@ -146,7 +146,7 @@ Queue<T>& Queue<T>::operator-=(T tPtr){
 }
 
 template <class T>
-T* Queue<T>::operator[](int index){
+T Queue<T>::operator[](int index){
     Node *currNode;
     int currIndex = 0;
     
