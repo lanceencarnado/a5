@@ -27,7 +27,6 @@ class Queue
         Queue<T>& operator-=(T);
         T operator[](int);
         bool operator!();
-        Node* getHead();
     
     private:
         Node* head;
@@ -171,9 +170,5 @@ bool Queue<T>::operator!(){
         return true;
 }
 
-template <class T>
-Node* Queue<T>::getHead(){
-    return head;
-}
 
 #endif
