@@ -29,9 +29,10 @@ void UImanager::mainMenu(int* choice)
     cout<< "\n\n\n                   WELCOME TO THE BRIG MANAGEMENT SYSTEM \n\n";
     cout << "( 1 )  Manage pirates" << endl;
     cout << "( 2 )  View brig" << endl;
+    cout << "( 3 )  Show pirates' loot" << endl;
     cout << "( 0 )  Exit" << endl;
 
-    while (*choice < 0 || *choice > 2) {
+    while (*choice < 0 || *choice > 3) {
         cout << "Enter your selection:  ";
         getline(cin, str);
         stringstream ss(str);
@@ -131,6 +132,25 @@ void UImanager::printBrig(Brig* brig)
         while (!(*tempQueue)) {
             cout <<"----Pirate id: "<< (*tempQueue)[0]->getId() 
                 << "  space: " << (*tempQueue)[0]->getSpace() << endl;
+            tempQueue->pop();
+        }
+        delete tempQueue;
+        index += 1;
+    }
+}
+
+void UImanager::printLoot(Brig* brig)
+{
+    list<Cell*>& cells = brig->getCells();
+    Queue<Pirate*>* tempQueue;
+    int index = 0;
+
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+    list<Cell*>::iterator itr;
+    for (itr = cells.begin(); itr != cells.end(); ++itr) {
+        tempQueue = new Queue<Pirate*>((*itr)->getPirates());
+        while (!(*tempQueue)) {
+            (*tempQueue)[0]->loot();
             tempQueue->pop();
         }
         delete tempQueue;

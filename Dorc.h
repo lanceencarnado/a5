@@ -7,6 +7,7 @@ class Dorc: public Pirate
 {
   public:
     Dorc();
+    virtual void loot();
 };
 
 #endif

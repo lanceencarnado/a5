@@ -14,7 +14,9 @@ class Pirate
     Pirate();
     int getId();
     int getSpace();
+    virtual void loot() = 0;
   protected:
+    string      item;
     static int  nextId;
     int         id;
     int         space;

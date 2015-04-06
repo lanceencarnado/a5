@@ -17,6 +17,7 @@ class UImanager {
     void showError(string);
     void pause();
     void getIdToRemove(int* pId);
+    void printLoot(Brig*);
 };
 
 #endif

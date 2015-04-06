@@ -7,6 +7,7 @@ class Porc: public Pirate
 {
   public:
     Porc();
+    virtual void loot();
 };
 
 #endif

@@ -56,6 +56,9 @@ void BrigManager::launch()
         else if (choice1 == 2) {
             view->printBrig(brig);
         }
+        else if (choice1 == 3) {
+            view->printLoot(brig);
+        }
         if (choice2 != 0)
             view->pause();
     }
