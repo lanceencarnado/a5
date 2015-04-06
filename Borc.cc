@@ -8,5 +8,5 @@ Borc::Borc()
 }
 
 void Borc::loot() {
-    cout << "Borc (" << id << ") steals " << item << endl;
+    cout << "Borc (" << id << ") loots " << item << endl;
 }

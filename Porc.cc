@@ -8,6 +8,6 @@ Porc::Porc()
 }
 
 void Porc::loot() {
-    cout << "Porc (" << id << ") steals " << item << endl;
+    cout << "Porc (" << id << ") snatches " << item << endl;
 }
 
