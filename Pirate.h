@@ -12,6 +12,7 @@ class Pirate
 {
   public:
     Pirate();
+    virtual ~Pirate();
     int getId();
     int getSpace();
     virtual void loot() = 0;
