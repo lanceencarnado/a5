@@ -61,11 +61,21 @@ Queue<T>::~Queue(){
     }
 }
 
+/*   Function:  pop                         			        */
+/*        out:  Int indicating success or failure               */
+/*    Purpose:  Removes the generic type at the front of the    */
+/*              Queue                                           */
+
 template <class T>
 void Queue<T>::pop(){
     if (head != 0)
         *(this) -= head->data;
 }
+
+/*   Function:  front                         			        */
+/*        out:  Generic type at the front of the Queue          */
+/*    Purpose:  Returns the generic type at the front of        */
+/*              the queue                                       */
 
 template <class T>
 T Queue<T>::front(){
@@ -84,6 +94,11 @@ void Queue<T>::deleteData(){
         currNode = nextNode;
     }
 }
+
+/*   Function:  overloaded addition assignment operator         */
+/*         in:  Generic type to be added to the Queue           */
+/*        out:  Reference to the queue (cascading)              */
+/*    Purpose:  Adds the generic type to the end of the Queue   */
 
 template <class T>
 Queue<T>& Queue<T>::operator+=(T newT){
@@ -120,6 +135,10 @@ Queue<T>& Queue<T>::operator+=(T newT){
     return *this;
 }
 
+/*   Function:  overloaded subtraction assignment operator      */
+/*         in:  A generic type to be removed                    */
+/*    Purpose:  Removes a generic type from the Queue           */
+
 template <class T>
 Queue<T>& Queue<T>::operator-=(T tPtr){
     Node *currNode, *prevNode;
@@ -154,6 +173,11 @@ Queue<T>& Queue<T>::operator-=(T tPtr){
 
 }
 
+/*   Function:  overloaded subscript operator                   */
+/*         in:  Index of the queue                              */
+/*        out:  The data at that index                          */
+/*    Purpose:  Returns the data at an index                    */
+
 template <class T>
 T Queue<T>::operator[](int index){
     Node *currNode;
@@ -171,6 +195,10 @@ T Queue<T>::operator[](int index){
     
     return 0;
 }
+
+/*   Function:  overloaded Negation operator                    */
+/*        out:  Boolean indicating empty or non-empty           */
+/*    Purpose:  Indicates whether or not the Queue is empty     */
 
 template <class T>
 bool Queue<T>::operator!(){

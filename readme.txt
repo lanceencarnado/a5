@@ -5,7 +5,14 @@ Purpose:  	Modified BMS that implements a templated collection
 		polymorphism
 
 Polymorphic behaviour:
-
+A function that displays what each Pirate has looted is invoked
+polymorphically, with each type of Pirate stealing a different thing.
+This is accessible through option 3 on the main menu.
+The classes involved are Pirate (abstract class), Borc, Dorc, and Porc
+(all concrete classes inheriting from Pirate).
+The virtual function involved in implementing the polymorphic behaviour
+is loot(), which is pure virtual in Pirate, and has a concrete
+implementation in Borc, Dorc, and Porc.
 
 List of header files:
 Borc.h
